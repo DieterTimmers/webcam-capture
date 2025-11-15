@@ -1,0 +1,6 @@
+[submodule "webcam_capture/third_party/opencv"]
+	path = webcam_capture/third_party/opencv
+	url = https://github.com/opencv/opencv.git
+[submodule "webcam_capture/third_party/opencv_contrib"]
+	path = webcam_capture/third_party/opencv_contrib
+	url = https://github.com/opencv/opencv_contrib.git
