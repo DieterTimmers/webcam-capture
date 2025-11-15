@@ -1,0 +1,90 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "CMake: Build webcam_example",
+            "command": "make",
+            "args": ["-j4"],
+            "options": {
+                "cwd": "${workspaceFolder}/build/webcam_capture"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build webcam_example using CMake"
+        },
+        {
+            "type": "shell",
+            "label": "CMake: Configure webcam_capture",
+            "command": "cmake",
+            "args": ["../../webcam_capture"],
+            "options": {
+                "cwd": "${workspaceFolder}/build/webcam_capture"
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Configure webcam_capture CMake project"
+        },
+        {
+            "type": "shell", 
+            "label": "OpenCV: Build from source",
+            "command": "bash",
+            "args": ["${workspaceFolder}/scripts/build_opencv.sh"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "problemMatcher": ["$gcc"],
+            "detail": "Build OpenCV from source"
+        },
+        {
+            "type": "shell",
+            "label": "LibTorch: Download and extract",
+            "command": "bash", 
+            "args": ["${workspaceFolder}/scripts/download_libtorch.sh"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Download and extract LibTorch"
+        },
+        {
+            "type": "shell",
+            "label": "Setup: Build all dependencies",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "OpenCV: Build from source",
+                "LibTorch: Download and extract"
+            ],
+            "group": "build",
+            "detail": "Build all third-party dependencies"
+        },
+        {
+            "type": "shell",
+            "label": "Full Build: Dependencies + Project", 
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Setup: Build all dependencies",
+                "CMake: Configure webcam_capture", 
+                "CMake: Build webcam_example"
+            ],
+            "group": "build",
+            "detail": "Complete build: dependencies + main project"
+        },
+        {
+            "type": "shell",
+            "label": "Clean: All builds",
+            "command": "rm", 
+            "args": ["-rf", "build", "install"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "detail": "Clean all build directories"
+        }
+    ],
+    "version": "2.0.0"
+}

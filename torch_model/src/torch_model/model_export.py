@@ -1,16 +1,15 @@
 import torch
 import torchvision
 
-# Use ResNet18 - a simple classification model that works with standard LibTorch
-model = torchvision.models.resnet18(weights="DEFAULT")
+# RetinaNet with ResNet50 backbone
+model = torchvision.models.detection.retinanet_resnet50_fpn(weights="DEFAULT")
 model.eval()
 
-# Create a dummy input to trace the model (typical webcam resolution)
-dummy_input = torch.randn(1, 3, 224, 224)  # ResNet expects 224x224
+dummy_input = torch.randn(1, 3, 416, 416)
 
-# Use torch.jit.trace instead of torch.jit.script for better compatibility
-traced_model = torch.jit.trace(model, dummy_input)
-traced_model.save("model.pt")
+scripted_model = torch.jit.script(model)
+scripted_model.save("model.pt")
 
-print("ResNet18 model saved as model.pt")
-print("This model is compatible with standard LibTorch C++!")
+print("RetinaNet ResNet50 model saved as model.pt")
+print("- Single-shot detector")
+print("- Good for real-time applications")

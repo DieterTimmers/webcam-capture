@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug webcam_example",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/webcam_capture/webcam_example",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build/webcam_capture",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "CMake: Build webcam_example",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "logging": {
+                "moduleLoad": false,
+                "trace": false,
+                "engineLogging": false,
+                "programOutput": true,
+                "exceptions": true
+            }
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+{
+    "cmake.buildDirectory": "${workspaceFolder}/build/webcam_capture",
+    "cmake.sourceDirectory": "${workspaceFolder}/webcam_capture",
+    "cmake.configureOnOpen": true,
+    "cmake.buildBeforeRun": true
+}
